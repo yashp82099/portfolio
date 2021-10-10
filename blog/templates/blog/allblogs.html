@@ -5,7 +5,10 @@
     {% load static%}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Yash Patel</title>
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Yash's Blog</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/album/">
 
@@ -63,7 +66,7 @@
                         <div class="navbar-nav ">
                             <a class="nav-link" href="https://www.linkedin.com/in/yash-patel-004100195/">LinkedIn</a>
                             <a class="nav-link" href="{% static 'YP.pdf' %}">Resume</a>
-                            <a class="nav-link" href="{% url 'allblogs' %}">Blog</a>
+                            <a class="nav-link active" href="{% url 'allblogs' %}">Blog</a>
                         </div>
                     </div>
 
@@ -73,51 +76,37 @@
     </header>
 
 
-    <main>
-
-        <section class="py-5 text-center container">
-            <div class="row py-lg-5">
-                <div class="col-lg-6 col-md-8 mx-auto">
-                    <h1 class="fw-light fw-bold py-3">Hi, I'm Yash</h1>
-                    <img style='width: 30%;' src="{% static 'yp.jpeg' %}" alt="picture of me">
-
-                    <p class="lead pt-5 text-muted">I'm Full-Stack Software Engineer with a passion for ingenuity in
-                        software
-                        development, occasionally some spicy food as well.</p>
-                    <p>
-                        <a href="mailto:ypatel82099@gmail.com" class="btn btn-primary my-2">Email Me</a>
-                    </p>
-                </div>
-            </div>
-        </section>
-
-
-
-
-        <div class="album py-5 bg-light">
-            <div class="container">
-
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
-                    {% for job in jobs.all.reverse %}
-                    <div class="col">
-                        <div class="card shadow-sm">
-                            <img class="card-img-top" src="{{job.image.url}}" alt="picture of school">
-
+    <main role="main">
+        <div class="container">
+            <h1 class="text-center py-4">Welcome to Yash's Blog</h1>
+            <br>
+            <h2 class=>Latest Posts</h2>
+            <hr>
+            {% for blog in blog.all%}
+                <a style="text-decoration: none; color: rgb(51, 50, 50);" href="{% url 'detail' blog.id%}">
+                    <div class="card mb-2 m-auto" style="max-width: 540px;">
+                        <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{blog.image.url}}" class="img-fluid rounded-start p-2" alt="...">
+                        </div>
+                        <div class="col-md-8">
                             <div class="card-body">
-                                <p class="card-text"> {{ job.summary }} </p>
-
+                            <h5 class="card-title">{{blog.title}}</h5>
+                            <p class="card-text">{{blog.summary}}</p>
+                            <p class="card-text"><small class="text-muted">{{blog.pub_date}}</small></p>
                             </div>
                         </div>
+                        </div>
                     </div>
-                    {% endfor %}
-                </div>
+                </a>
+              {%endfor%}
 
-            </div>
+
+
+
+
         </div>
-
-
-
+        
     </main>
 
     <footer class="text-muted py-1">
